@@ -34,8 +34,9 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import Stocks from "./Stocks.vue";
+// // @ is an alias to /src
+// import axios from "axios";
+// import authStore from "../../store/modules/auth";
 
 export default {
   props: ["stock"],

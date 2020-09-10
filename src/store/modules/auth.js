@@ -110,7 +110,7 @@ const actions = {
     }, 500);
     setTimeout(() => {
       router.replace("/");
-    }, 500);
+    }, 800);
   },
   tryAutoLogin({ commit }) {
     const token = localStorage.getItem("token");
