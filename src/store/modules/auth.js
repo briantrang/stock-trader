@@ -22,11 +22,14 @@ const mutations = {
   },
 };
 const actions = {
+  //SetLogoutTimer action
   setLogoutTimer({ commit }, expirationTime) {
     setTimeout(() => {
       commit("clearAuthData");
     }, expirationTime * 1000);
   },
+
+  //Signup action
   signup({ commit, dispatch }, authData) {
     axios
       .post("/accounts:signUp?key=AIzaSyAYACdm0Fk5mEbMixspoWWEPMvMpJ3Cf2w", {
@@ -59,6 +62,8 @@ const actions = {
       router.replace("/");
     }, 1500);
   },
+
+  //Login
   login({ commit, dispatch }, authData) {
     axios
       .post(
@@ -96,7 +101,6 @@ const actions = {
             state.idToken
         )
         .then((response) => {
-          console.log("loaded data: " + JSON.stringify(response.data));
           // const stocks = response.data.stocks;
           const funds = response.data.funds;
           const stockPortfolio = response.data.stockPortfolio;
@@ -107,12 +111,14 @@ const actions = {
           commit("SET_PORTFOLIO", portfolio);
         })
         .error((error) => console.log(error));
-    }, 500);
+    }, 1000);
     setTimeout(() => {
       router.replace("/");
     }, 800);
   },
+  //Auto login action
   tryAutoLogin({ commit }) {
+    console.log("auto log in commenced!");
     const token = localStorage.getItem("token");
     if (!token) {
       return;
@@ -127,6 +133,39 @@ const actions = {
       token: token,
       userId: userId,
     });
+
+    setTimeout(() => {
+      axios
+        .get(
+          "https://vue-stock-trading-c1d4b.firebaseio.com/users/" +
+            localStorage.getItem("userId") +
+            ".json" +
+            "?auth=" +
+            state.idToken
+        )
+        .then((response) => {
+          const funds = response.data.funds;
+          const stockPortfolio = response.data.stockPortfolio;
+          const portfolio = { stockPortfolio, funds };
+
+          commit("SET_PORTFOLIO", portfolio);
+        })
+        .error((error) => console.log(error));
+    }, 0);
+    setTimeout(() => {
+      axios
+        .get(
+          "https://vue-stock-trading-c1d4b.firebaseio.com/data/" +
+            ".json" +
+            "?auth=" +
+            state.idToken
+        )
+        .then((response) => {
+          const stocks = response.data;
+          commit("SET_STOCKS", stocks);
+        })
+        .error((error) => console.log(error));
+    }, 300);
   },
   logout({ commit }) {
     commit("clearAuthData");
@@ -134,6 +173,9 @@ const actions = {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("fbID");
+    localStorage.removeItem("name");
+    localStorage.removeItem("email");
+    this.reset();
     router.replace("/signin");
   },
   // eslint-disable-next-line no-unused-vars

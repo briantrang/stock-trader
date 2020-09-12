@@ -1,4 +1,3 @@
-// import dataStocks from "../../data/stocks";
 import axios from "axios";
 import authState from "./auth";
 

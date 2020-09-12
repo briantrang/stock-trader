@@ -12,13 +12,16 @@ const routes = [
     path: "/",
     name: "Home",
     component: () => import("../components/Home.vue"),
+
     beforeEnter: (to, from, next) => {
-      if (auth.state.idToken) {
-        next();
-      } else {
-        console.log("store idtoken: " + auth.state.idToken);
-        next("/signin");
-      }
+      setTimeout(() => {
+        if (auth.state.idToken) {
+          next();
+        } else {
+          console.log("store idtoken: " + auth.state.idToken);
+          next("/signin");
+        }
+      }, 130);
     },
   },
   {
@@ -26,12 +29,14 @@ const routes = [
     name: "Portfolio",
     component: () => import("../components/portfolio/Portfolio.vue"),
     beforeEnter: (to, from, next) => {
-      if (auth.state.idToken) {
-        next();
-      } else {
-        console.log("store idtoken: " + auth.state.idToken);
-        next("/signin");
-      }
+      setTimeout(() => {
+        if (auth.state.idToken) {
+          next();
+        } else {
+          console.log("store idtoken: " + auth.state.idToken);
+          next("/signin");
+        }
+      }, 130);
     },
   },
   {
@@ -39,12 +44,14 @@ const routes = [
     name: "Stocks",
     component: () => import("../components/stocks/Stocks.vue"),
     beforeEnter: (to, from, next) => {
-      if (auth.state.idToken) {
-        next();
-      } else {
-        console.log("store idtoken: " + auth.state.idToken);
-        next("/signin");
-      }
+      setTimeout(() => {
+        if (auth.state.idToken) {
+          next();
+        } else {
+          console.log("store idtoken: " + auth.state.idToken);
+          next("/signin");
+        }
+      }, 130);
     },
   },
   {

@@ -49,6 +49,7 @@ export default {
       fetchData: "loadData"
     }),
     logout() {
+      this.$store.reset();
       this.$store.dispatch("logout");
     },
     saveData() {

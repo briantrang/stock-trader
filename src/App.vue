@@ -16,7 +16,8 @@ export default {
     appHeader: Header
   },
   created() {
-    this.$store.dispatch("initStocks");
+    this.$store.dispatch("fetchUser");
+    this.$store.dispatch("tryAutoLogin");
   }
 };
 </script>
