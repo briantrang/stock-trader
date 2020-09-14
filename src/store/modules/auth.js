@@ -23,9 +23,9 @@ const mutations = {
 };
 const actions = {
   //SetLogoutTimer action
-  setLogoutTimer({ commit }, expirationTime) {
+  setLogoutTimer({ dispatch }, expirationTime) {
     setTimeout(() => {
-      commit("clearAuthData");
+      dispatch("logout");
     }, expirationTime * 1000);
   },
 
