@@ -46,7 +46,7 @@ export default {
   props: ["stock"],
   data() {
     return {
-      quantity: 0,
+      quantity: "",
       enoughQuantity: true
     };
   },
@@ -60,7 +60,7 @@ export default {
           quantity: Number(this.quantity)
         };
         this.sellStock(order);
-        this.quantity(0);
+        this.quantity = "";
       } else {
         this.enoughQuantity = false;
       }

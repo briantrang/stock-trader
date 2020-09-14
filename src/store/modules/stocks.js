@@ -22,21 +22,6 @@ const actions = {
     commit("BUY_STOCKS", order);
   },
   initStocks: async ({ commit }) => {
-    //When api marketstack still has available request use
-    //http://api.marketstack.com/v1/eod?access_key=b8aeb1b2ed9780014ee531b16ff1f01f&symbols=AAPL,FB,AMZN,GOOG,NFLX&limit=5
-    // else use: https://vue-stock-trading-c1d4b.firebaseio.com/
-
-    // let stockData = await axios
-    //   .get(
-    //     "http://api.marketstack.com/v1/eod?access_key=b8aeb1b2ed9780014ee531b16ff1f01f&symbols=AAPL,FB,AMZN,GOOG,NFLX&limit=5"
-    //   )
-    //   .then((response) => {
-    //     stockData = response.data.data;
-    //     console.log("stock data from api: " + JSON.stringify(stockData));
-    //     commit("SET_STOCKS", stockData);
-    //   })
-    //   .catch((error) => console.log(error));
-
     let stockData;
     axios
       .get(

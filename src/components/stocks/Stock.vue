@@ -42,7 +42,7 @@ export default {
   props: ["stock"],
   data() {
     return {
-      quantity: 0,
+      quantity: "",
       enoughFunds: true
     };
   },
@@ -56,6 +56,10 @@ export default {
           quantity: Number(this.quantity)
         };
         this.$store.dispatch("buyStock", order);
+        alert(
+          "Your order has been placed! You should be able to see your purchased stock in your portfolio!"
+        );
+        this.quantity = "";
       } else {
         this.enoughFunds = false;
       }

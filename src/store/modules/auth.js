@@ -1,6 +1,7 @@
 import axios from "../../axios-auth";
 import globalAxios from "axios";
 import router from "../../router/index";
+import moment from "moment";
 
 const state = {
   idToken: null,
@@ -99,18 +100,16 @@ const actions = {
             state.idToken
         )
         .then((response) => {
-          // const stocks = response.data.stocks;
           const funds = response.data.funds;
           const stockPortfolio = response.data.stockPortfolio;
-
           const portfolio = { stockPortfolio, funds };
 
-          // commit("SET_STOCKS", stocks);
           commit("SET_PORTFOLIO", portfolio);
         })
         .error((error) => console.log(error));
     }, 1000);
     setTimeout(() => {
+      dispatch("tryAutoLogin");
       router.replace("/");
     }, 800);
   },
@@ -212,9 +211,8 @@ const actions = {
       })
       .catch((error) => console.log(error));
   },
-  updateCurrentStocks() {
-    const date = new Date();
-    const currentDay = date.getDate();
+  updateCurrentStocks({ dispatch }) {
+    const currentDay = moment().format("MMMM Do YYYY");
     let previousDay = getPrevDay();
 
     function getPrevDay() {
@@ -230,8 +228,8 @@ const actions = {
         })
         .catch((error) => console.log(error));
     }
-    setTimeout((dispatch) => {
-      if (currentDay > previousDay) {
+    setTimeout(() => {
+      if (JSON.stringify(currentDay) > JSON.stringify(previousDay)) {
         dispatch("initStocks");
         console.log("stocks has just been initiated!");
       } else {
@@ -246,13 +244,15 @@ const actions = {
           ".json" +
           "?auth=" +
           state.idToken,
-        currentDay
+        JSON.stringify(currentDay)
       )
       .then((response) => {
         console.log(response);
         console.log(`Just updated setDay in db with ${currentDay}`);
       })
-      .catch((error) => console.log(error));
+      .catch((error) =>
+        console.log("Failed to updae setDay because: " + error)
+      );
   },
 };
 const getters = {
