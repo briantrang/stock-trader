@@ -18,6 +18,7 @@ export default {
   created() {
     this.$store.dispatch("fetchUser");
     this.$store.dispatch("tryAutoLogin");
+    this.$store.dispatch("updateCurrentStocks");
   }
 };
 </script>

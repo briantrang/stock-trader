@@ -19,9 +19,6 @@
     </b-navbar-nav>
 
     <b-navbar-nav class="ml-auto" v-if="auth">
-      <b-nav-item-dropdown text="Save & Load">
-        <b-dropdown-item @click="saveData">Save Data</b-dropdown-item>
-      </b-nav-item-dropdown>
       <b-nav-item @click="logout">Logout</b-nav-item>
     </b-navbar-nav>
     <b-navbar-nav class="ml-auto">
@@ -34,8 +31,6 @@
 <script>
 // @ is an alias to /src
 import { mapActions } from "vuex";
-import axios from "axios";
-import authStore from "../store/modules/auth";
 
 export default {
   computed: {
@@ -51,26 +46,6 @@ export default {
     logout() {
       this.$store.reset();
       this.$store.dispatch("logout");
-    },
-    saveData() {
-      const data = {
-        funds: this.$store.getters.funds,
-        stockPortfolio: this.$store.getters.stockPortfolio,
-        stocks: this.$store.getters.stocks,
-        name: localStorage.getItem("name"),
-        email: localStorage.getItem("email")
-      };
-      axios
-        .patch(
-          "https://vue-stock-trading-c1d4b.firebaseio.com/users/" +
-            localStorage.getItem("userId") +
-            ".json" +
-            "?auth=" +
-            authStore.state.idToken,
-          data
-        )
-        .then(response => console.log("saved data:" + response.data))
-        .error(error => console.log(error));
     }
   }
 };

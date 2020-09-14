@@ -55,7 +55,6 @@ const actions = {
           id: localStorage.getItem("userId"),
         });
         dispatch("setLogoutTimer", res.data.expiresIn);
-        dispatch("initStocks");
       })
       .catch((error) => console.log(error));
     setTimeout(() => {
@@ -87,7 +86,6 @@ const actions = {
           userId: res.data.localId,
         });
         dispatch("setLogoutTimer", res.data.expiresIn);
-        dispatch("initStocks");
       })
       .catch((error) => console.log(error));
 
@@ -118,7 +116,6 @@ const actions = {
   },
   //Auto login action
   tryAutoLogin({ commit }) {
-    console.log("auto log in commenced!");
     const token = localStorage.getItem("token");
     if (!token) {
       return;
@@ -212,6 +209,48 @@ const actions = {
           users.push(user);
         }
         commit("storeUser", users[0]);
+      })
+      .catch((error) => console.log(error));
+  },
+  updateCurrentStocks() {
+    const date = new Date();
+    const currentDay = date.getDate();
+    let previousDay = getPrevDay();
+
+    function getPrevDay() {
+      axios
+        .get(
+          "https://vue-stock-trading-c1d4b.firebaseio.com/" +
+            ".json" +
+            "?auth=" +
+            state.idToken
+        )
+        .then(async (response) => {
+          previousDay = await response.data.setDay;
+        })
+        .catch((error) => console.log(error));
+    }
+    setTimeout((dispatch) => {
+      if (currentDay > previousDay) {
+        dispatch("initStocks");
+        console.log("stocks has just been initiated!");
+      } else {
+        console.log(`Did not call api since it is not a new day!`);
+        return;
+      }
+    }, 400);
+
+    axios
+      .put(
+        "https://vue-stock-trading-c1d4b.firebaseio.com/setDay" +
+          ".json" +
+          "?auth=" +
+          state.idToken,
+        currentDay
+      )
+      .then((response) => {
+        console.log(response);
+        console.log(`Just updated setDay in db with ${currentDay}`);
       })
       .catch((error) => console.log(error));
   },
