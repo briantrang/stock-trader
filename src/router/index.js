@@ -12,6 +12,11 @@ const routes = [
     path: "/",
     name: "Home",
     component: () => import("../components/Home.vue"),
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: () => import("../components/Dashboard.vue"),
 
     beforeEnter: (to, from, next) => {
       setTimeout(() => {

@@ -59,7 +59,7 @@ const actions = {
       })
       .catch((error) => console.log(error));
     setTimeout(() => {
-      router.replace("/");
+      router.replace("/dashboard");
     }, 1500);
   },
 
@@ -110,7 +110,7 @@ const actions = {
     }, 1000);
     setTimeout(() => {
       dispatch("tryAutoLogin");
-      router.replace("/");
+      router.replace("/dashboard");
     }, 800);
   },
   //Auto login action
