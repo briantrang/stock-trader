@@ -172,7 +172,7 @@ const actions = {
     localStorage.removeItem("name");
     localStorage.removeItem("email");
     this.reset();
-    router.replace("/signin");
+    router.replace("/");
   },
   // eslint-disable-next-line no-unused-vars
   storeUser({ commit, state }, userData) {
