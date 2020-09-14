@@ -14,11 +14,20 @@
           <button type="submit">Submit</button>
         </div>
       </form>
+      <div>
+        <small
+          >Don't have an account yet?
+          <strong>
+            <span class="signUp" @click="signUp">Sign Up Now!</span></strong
+          >
+        </small>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import router from "../../router/index";
 export default {
   data() {
     return {
@@ -37,6 +46,9 @@ export default {
         email: formData.email,
         password: formData.password
       });
+    },
+    signUp() {
+      return router.replace("signup");
     }
   }
 };
@@ -96,5 +108,9 @@ export default {
   background-color: transparent;
   color: #ccc;
   cursor: not-allowed;
+}
+
+.signUp {
+  cursor: pointer;
 }
 </style>

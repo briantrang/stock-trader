@@ -4,9 +4,10 @@ import auth from "../store/modules/auth";
 
 Vue.use(VueRouter);
 
-//Guard the home(dashboard), stocks and portoflio routes until
+//Guard the dashboard, stocks and portoflio routes until
 //the user signs up or logs in.
-//Default page for new users should be a
+//Default page for new users should be the root home page
+//or the signup and login pages
 const routes = [
   {
     path: "/",

@@ -27,6 +27,14 @@
           <button type="submit">Submit</button>
         </div>
       </form>
+      <div>
+        <small
+          >Already registered?
+          <strong>
+            <span class="signIn" @click="signIn">Log In Now!</span></strong
+          >
+        </small>
+      </div>
     </div>
   </div>
 </template>
@@ -34,6 +42,8 @@
 <script>
 import axios from "axios";
 import authStore from "../../store/modules/auth";
+import router from "../../router/index";
+
 export default {
   data() {
     return {
@@ -76,6 +86,9 @@ export default {
           )
           .then(response => console.log("saved data:" + response.data));
       }, 1500);
+    },
+    signIn() {
+      return router.replace("/signin");
     }
   }
 };
@@ -166,5 +179,9 @@ export default {
   background-color: transparent;
   color: #ccc;
   cursor: not-allowed;
+}
+
+.signIn {
+  cursor: pointer;
 }
 </style>
