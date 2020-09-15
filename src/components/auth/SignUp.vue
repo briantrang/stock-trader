@@ -1,6 +1,7 @@
 <template>
   <div id="signup">
     <div class="signup-form">
+      <h2 class="text-center">Sign up</h2>
       <form @submit.prevent="onSubmit">
         <div class="input">
           <label for="name">Name</label>

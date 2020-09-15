@@ -69,10 +69,10 @@ export default {
   position: sticky;
   top: 0;
   z-index: 1 !important;
-  background-color: rgba(0, 0, 0, 0.653);
+  background-color: transparent;
 }
 .navText {
-  color: white;
+  color: black;
   font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;

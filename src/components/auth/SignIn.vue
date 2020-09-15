@@ -1,26 +1,29 @@
 <template>
-  <div id="signin">
-    <div class="signin-form">
-      <form @submit.prevent="onSubmit">
-        <div class="input">
-          <label for="email">Email</label>
-          <input type="email" id="email" v-model="email" />
+  <div>
+    <div id="signin">
+      <div class="signin-form">
+        <h2 class="text-center">Sign in</h2>
+        <form @submit.prevent="onSubmit">
+          <div class="input">
+            <label for="email">Email</label>
+            <input type="email" id="email" v-model="email" />
+          </div>
+          <div class="input">
+            <label for="password">Password</label>
+            <input type="password" id="password" v-model="password" />
+          </div>
+          <div class="submit">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+        <div>
+          <small
+            >Don't have an account yet?
+            <strong>
+              <span class="signUp" @click="signUp">Sign Up Now!</span></strong
+            >
+          </small>
         </div>
-        <div class="input">
-          <label for="password">Password</label>
-          <input type="password" id="password" v-model="password" />
-        </div>
-        <div class="submit">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-      <div>
-        <small
-          >Don't have an account yet?
-          <strong>
-            <span class="signUp" @click="signUp">Sign Up Now!</span></strong
-          >
-        </small>
       </div>
     </div>
   </div>
