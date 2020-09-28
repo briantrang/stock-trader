@@ -27,43 +27,64 @@
         <h1>Practice. Strategize. Learn. Have Fun.</h1>
       </div>
       <div class="row text-center">
-        <div class="col-12 col-sm-6 centerAll order-2 order-sm-1 p-4">
+        <div
+          class="col-12 col-sm-6 centerAll order-2 order-sm-1 p-2 p-sm-0 px-4 sectionalDiagonalLeft"
+        >
           <h4>
             With the FAANG stock trading simulator, you can
             <span class="emphasizeText">practice</span> buying and selling FAANG
             stocks without any of the risks.
           </h4>
-        </div>
-        <div class="col-12 col-sm-6 centerAll order-1 order-sm-2 p-4">
-          <img
-            class="mainContentImage"
-            src="../assets/Homepage/undraw_practice.svg"
-            alt=""
-          />
-        </div>
-        <div class="col-12 col-sm-6 centerAll order-4 order-sm-3 p-4">
-          <img
-            class="mainContentImage"
-            src="../assets/Homepage/undraw_strategize.svg"
-            alt=""
-          />
-        </div>
-        <div class="col-12 col-sm-6 centerAll order-4 order-sm-3 p-4">
-          <h4>
+          <h4 class="d-none d-xl-block">
             Test as many methods you desire to find the most optimal stock
             trading strategy that works for you!. Then you can
             <span class="emphasizeText">strategize</span> your way to victory.
           </h4>
-        </div>
-        <div class="col-12 col-sm-6 centerAll order-6 order-sm-5 p-4">
-          <h4>
+          <h4 class="d-none d-xl-block">
             If you made a mistake, it's OKAY! You can start over with a new
             account and try again! With the ability to
             <span class="emphasizeText">learn</span> from your mistakes, you'll
             be able to find what works best for you in no time!
           </h4>
         </div>
-        <div class="col-12 col-sm-6 centerAll order-5 order-sm-6 p-4">
+        <div class="col-12 col-sm-6 centerAll order-1 order-sm-2 px-0">
+          <img
+            class="mainContentImage"
+            src="../assets/Homepage/undraw_practice.svg"
+            alt=""
+          />
+        </div>
+        <div
+          class="col-12 col-sm-6 centerAll order-4 order-sm-3  d-xl-none px-0"
+        >
+          <img
+            class="mainContentImage"
+            src="../assets/Homepage/undraw_strategize.svg"
+            alt=""
+          />
+        </div>
+        <div
+          class="col-12 col-sm-6 centerAll order-4 order-sm-3 p-2 p-sm-0 px-4 d-xl-none"
+        >
+          <h4 class="d-xl-none">
+            Test as many methods you desire to find the most optimal stock
+            trading strategy that works for you!. Then you can
+            <span class="emphasizeText">strategize</span> your way to victory.
+          </h4>
+        </div>
+        <div
+          class="col-12 col-sm-6 centerAll order-6 order-sm-5 p-2 p-sm-0 px-4 d-xl-none"
+        >
+          <h4 class="d-xl-none">
+            If you made a mistake, it's OKAY! You can start over with a new
+            account and try again! With the ability to
+            <span class="emphasizeText">learn</span> from your mistakes, you'll
+            be able to find what works best for you in no time!
+          </h4>
+        </div>
+        <div
+          class="col-12 col-sm-6 centerAll order-5 order-sm-6 d-xl-none px-0"
+        >
           <img
             class="mainContentImage"
             src="../assets/Homepage/undraw_learn.svg"
@@ -151,15 +172,34 @@ body {
 }
 
 .mainContent {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .mainContentImage {
   width: 100%;
+  z-index: -2;
+  background-color: $primary;
 }
 .emphasizeText {
   font-weight: bold;
   color: $primary;
+}
+
+.sectionalDiagonalLeft:after {
+  @media (min-width: $breakpoint-xl) {
+    background: #fff;
+    content: "";
+    display: block;
+    height: 100.3%;
+    position: absolute;
+    top: 0;
+    -webkit-transform: skewX(-6deg);
+    -o-transform: skewX(-6deg);
+    transform: skewX(-6deg);
+    right: -11.7%;
+    width: calc(16.66666% + 32px);
+    z-index: -1;
+  }
 }
 </style>

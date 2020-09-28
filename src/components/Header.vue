@@ -4,8 +4,18 @@
       <b-navbar-nav>
         <b-navbar-brand>
           <router-link to="/" activeClass="active" tag="li">
-            <span class="navText">FAANG Stock Trader</span></router-link
-          >
+            <span class="allLogos">
+              <img class="navLogo" src="@/assets/logo/facebook-2.svg" alt="" />
+              <img
+                class="navLogo"
+                src="@/assets/logo/amazon-icon-1.svg"
+                alt=""
+              />
+              <img class="navLogo" src="@/assets/logo/apple-black.svg" alt="" />
+              <img class="navLogo" src="@/assets/logo/netflix-1.svg" alt="" />
+              <img class="navLogo" src="@/assets/logo/google-icon.svg" alt="" />
+            </span>
+          </router-link>
         </b-navbar-brand>
         <b-nav-item v-if="auth">
           <router-link to="/dashboard" activeClass="active" tag="li">
@@ -71,10 +81,12 @@ export default {
   z-index: 1 !important;
   background-color: transparent;
 }
-.navText {
-  color: black;
-  font-size: 1.2rem;
-  font-weight: bold;
+.navLogo {
+  height: 1rem;
+  margin: 5px;
+}
+
+.allLogos {
   cursor: pointer;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="signin">
+    <div id="signin" class="backgroundImage">
       <div class="signin-form">
         <h2 class="text-center">Sign in</h2>
         <form @submit.prevent="onSubmit">
@@ -12,11 +12,11 @@
             <label for="password">Password</label>
             <input type="password" id="password" v-model="password" />
           </div>
-          <div class="submit">
+          <div class="submit text-center">
             <button type="submit">Submit</button>
           </div>
         </form>
-        <div>
+        <div class="text-center">
           <small
             >Don't have an account yet?
             <strong>
@@ -57,13 +57,30 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "@/constants/variables.scss";
+
+#signin {
+  display: grid;
+  place-items: center;
+}
+
+.backgroundImage {
+  height: 100vh;
+  width: 100%;
+  background-image: url("../../assets/stock_market1.jpg");
+}
+
 .signin-form {
+  @media (max-width: $breakpoint-sm) {
+    width: 350px;
+  }
   width: 400px;
   margin: 30px auto;
   border: 1px solid #eee;
+  background-color: #fff;
   padding: 20px;
-  box-shadow: 0 2px 3px #ccc;
+  box-shadow: 0 0px 20px #fff;
 }
 
 .input {
@@ -86,13 +103,14 @@ export default {
 
 .input input:focus {
   outline: none;
-  border: 1px solid #521751;
+  border: 1px solid $primary;
   background-color: #eee;
 }
 
 .submit button {
-  border: 1px solid #521751;
-  color: #521751;
+  border: 1px solid $primary;
+  background-color: $primary;
+  color: white;
   padding: 10px 20px;
   font: inherit;
   cursor: pointer;
@@ -100,16 +118,16 @@ export default {
 
 .submit button:hover,
 .submit button:active {
-  background-color: #521751;
-  color: white;
+  background-color: white;
+  color: $primary;
 }
 
 .submit button[disabled],
 .submit button[disabled]:hover,
 .submit button[disabled]:active {
-  border: 1px solid #ccc;
+  border: 1px solid #fff;
   background-color: transparent;
-  color: #ccc;
+  color: $primary;
   cursor: not-allowed;
 }
 
